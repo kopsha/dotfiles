@@ -24,16 +24,19 @@ packer = require("packer")
 return packer.startup(function(use)
   -- packer can manage itself
   use("wbthomason/packer.nvim")
-  use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
+  use("nvim-lua/plenary.nvim")
 
-  use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
-  use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
+  use("bluz71/vim-nightfly-guicolors")
+  use("christoomey/vim-tmux-navigator")
 
   -- essential plugins
+  use("nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"})
   use("tpope/vim-surround")
   use("tpope/vim-vinegar")
+  use("tpope/vim-fugitive")
   use("vim-scripts/ReplaceWithRegister")
   use("numToStr/Comment.nvim")
+  use("mbbill/undotree")
 
   -- fuzzy finding w/ telescope
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance

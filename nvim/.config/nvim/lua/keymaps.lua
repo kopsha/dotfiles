@@ -16,17 +16,6 @@ keymap.set("n", "<leader>t-", ":tabclose<CR>")
 keymap.set("n", "<leader>t[", ":tabp<CR>")
 keymap.set("n", "<leader>t]", ":tabn<CR>")
 
--- telescope
-local builtin = require "telescope.builtin"
-keymap.set("n", "<leader>ff", builtin.find_files, {})
-keymap.set("n", "<leader>fc", builtin.grep_string, {})
-keymap.set("n", "<leader>fg", builtin.live_grep, {})
-keymap.set("n", "<leader>fb", builtin.buffers, {})
-keymap.set("n", "<leader>fh", builtin.help_tags, {})
-
-keymap.set("n", "<leader>gf", builtin.git_files, {})
-keymap.set("n", "<leader>gc", builtin.git_commits, {})
-keymap.set("n", "<leader>gh", builtin.git_bcommits, {})
-keymap.set("n", "<leader>gb", builtin.git_branches, {})
-keymap.set("n", "<leader>gs", builtin.git_status, {})
+keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+keymap.set("n", "<leader>gs", vim.cmd.Git)
 
