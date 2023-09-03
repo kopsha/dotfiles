@@ -1,3 +1,5 @@
 [user]
 	name = Florin Ciurcanu
 	email = florin.ciurcanu@gmail.com
+[pager]
+	branch = false
