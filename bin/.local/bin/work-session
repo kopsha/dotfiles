@@ -20,12 +20,12 @@ usage()
 
 open_session()
 {
-    folder=$(find ${WORK_AREAS[@]} -mindepth 1 -maxdepth 1 -type d | fzf)
+    folder=$(cat <(find ${WORK_AREAS[@]} -mindepth 1 -maxdepth 1 -type d) <(realpath ~/dotfiles) | fzf)
     [[ -z $folder ]] && exit 0
 
     session_name=$(basename "$folder" | tr . _)
     if ! tmux has-session -t $session_name 2>/dev/null; then
-        # session does not exist
+        echo "Creating $session_name session..."
         tmux new-session -ds $session_name -c $folder
     fi
 
