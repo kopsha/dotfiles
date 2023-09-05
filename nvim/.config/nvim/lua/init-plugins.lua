@@ -58,6 +58,12 @@ return packer.startup(function(use)
             {"L3MON4D3/LuaSnip"},     -- Required
         }
     }
+
+    use {
+        "APZelos/blamer.nvim",
+        config = function () vim.g.blamer_enabled = 1 end
+    }
+
     if packer_bootstrap then
         require("packer").sync()
     end
