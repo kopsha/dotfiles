@@ -13,6 +13,12 @@ keymap.set("n", "<leader>t", ":tabnew<CR>")
 keymap.set("n", "<leader>t-", ":tabclose<CR>")
 keymap.set("n", "<leader>t[", ":tabp<CR>")
 keymap.set("n", "<leader>t]", ":tabn<CR>")
+keymap.set("n", "¡", ":tabn 1<CR>") -- Alt + 1
+keymap.set("n", "™", ":tabn 2<CR>") -- Alt + 2
+keymap.set("n", "£", ":tabn 3<CR>") -- Alt + 3
+keymap.set("n", "¢", ":tabn 4<CR>") -- Alt + 4
+keymap.set("n", "∞", ":tabn 5<CR>") -- Alt + 5
+keymap.set("n", "§", ":tabn 6<CR>") -- Alt + 6
 
 keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 keymap.set("n", "<leader>gs", vim.cmd.Git)
@@ -43,3 +49,4 @@ keymap.set("n", "<leader>{}", function() vim.lsp.buf.format() end)
 
 -- replace text under cursor
 keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
