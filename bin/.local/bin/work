@@ -27,6 +27,9 @@ open_session()
     if ! tmux has-session -t $session_name 2>/dev/null; then
         echo "Creating $session_name session..."
         tmux new-session -ds $session_name -c $folder
+        if [[ -d "$folder/.venv" ]]; then
+            tmux send-keys -t $session_name "source .venv/bin/activate" C-m
+        fi
     fi
 
     if [[ -z $TMUX ]]; then
