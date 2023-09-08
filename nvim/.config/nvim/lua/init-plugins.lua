@@ -37,6 +37,10 @@ return packer.startup(function(use)
     use("vim-scripts/ReplaceWithRegister")
     use("numToStr/Comment.nvim")
     use("mbbill/undotree")
+    use {
+        "907th/vim-auto-save",
+        config = function () vim.g.auto_save = 1 end
+    }
 
     -- fuzzy finding w/ telescope
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
