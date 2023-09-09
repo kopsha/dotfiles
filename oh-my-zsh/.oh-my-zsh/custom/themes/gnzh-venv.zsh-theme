@@ -9,11 +9,11 @@ local PR_USER PR_USER_OP PR_PROMPT PR_HOST
 if [[ $UID -ne 0 ]]; then # normal user
   PR_USER='%F{green}%n%f'
   PR_USER_OP='%F{green}%#%f'
-  PR_PROMPT='%f> %f'
+  PR_PROMPT='%f➤ %f'
 else # root
   PR_USER='%F{red}%n%f'
   PR_USER_OP='%F{red}%#%f'
-  PR_PROMPT='%F{red}> %f'
+  PR_PROMPT='%F{red}➤ %f'
 fi
 
 # Check if we are on SSH or not
@@ -29,9 +29,9 @@ local return_code="%(?..%F{red}%? ↵%f)"
 local user_host="${PR_USER}%F{cyan}@${PR_HOST}"
 local current_dir="%B%F{blue}%~%f%b"
 local git_branch='$(git_prompt_info)'
-local virtual_env='${VIRTUAL_ENV_PROMPT}'
+local virtualenv='%F{yellow}$(virtualenv_prompt_info)%f'
 
-PROMPT="┌─ ${user_host} ${current_dir} \$(ruby_prompt_info) ${git_branch} ${VIRTUAL_ENV_PROMPT}
+PROMPT="┌─ ${user_host} ${current_dir} \$(ruby_prompt_info) ${git_branch} ${virtualenv}
 └─$PR_PROMPT "
 RPROMPT="${return_code}"
 
