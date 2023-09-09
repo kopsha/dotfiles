@@ -33,7 +33,7 @@ local virtualenv='%F{cyan}$(virtualenv_prompt_info)%f'
 
 PROMPT="┌─ ${user_host} ${current_dir} \$(ruby_prompt_info) ${git_branch} ${virtualenv}
 └─$PR_PROMPT "
-RPROMPT="${return_code}"
+RPROMPT="${return_code} %F{black}[%D{%T}]%f"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%F{yellow}‹%B"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%b› %f"
