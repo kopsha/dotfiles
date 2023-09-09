@@ -26,4 +26,9 @@ else
   export EDITOR='mvim'
 fi
 
+original_vim=$(which vim)
+alias ovim="$original_vim"
+alias vim="nvim"
+
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

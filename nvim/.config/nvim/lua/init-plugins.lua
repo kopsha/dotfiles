@@ -54,8 +54,6 @@ return packer.startup(function(use)
         "VonHeikemen/lsp-zero.nvim",
         branch = "v2.x",
         requires = {
-            -- LSP Support
-
             -- Autocompletion
             {"hrsh7th/nvim-cmp"},     -- Required
             {"hrsh7th/cmp-nvim-lsp"}, -- Required

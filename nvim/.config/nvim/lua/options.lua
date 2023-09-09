@@ -9,18 +9,27 @@ opt.tabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
+opt.smartindent = true
 
--- line wrapping
 opt.wrap = false -- disable line wrapping
 
+-- backup and swap
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
+
 -- search settings
-opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+opt.ignorecase = true
+opt.smartcase = true
+opt.hlsearch = false
+opt.incsearch = true
 
--- cursor line
+-- appearance and stuff
 opt.cursorline = false
-
--- appearance
+opt.scrolloff = 7
+opt.signcolumn = "yes"
+opt.colorcolumn = "80"
 
 -- turn on termguicolors for nightfly colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
