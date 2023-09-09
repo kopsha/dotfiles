@@ -1,7 +1,7 @@
 export PATH=$HOME/.local/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="gnzh"
+ZSH_THEME="gnzh-venv"
 
 unsetopt AUTO_CD
 # CASE_SENSITIVE="true"
