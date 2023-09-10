@@ -7,4 +7,3 @@ autoload -U colors && colors
 for color in ${(k)fg}; do
     print -P "${fg[$color]}$color${reset_color}"
 done
-

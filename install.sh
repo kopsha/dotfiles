@@ -24,4 +24,3 @@ case "$action" in
         echo "ERROR: Provide action '$action' is not valid."
         ;;
 esac
-

@@ -1,3 +1,4 @@
+
 -- auto install packer if not installed
 local ensure_packer = function()
     local fn = vim.fn
@@ -42,7 +43,23 @@ return packer.startup(function(use)
     use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })        -- fuzzy finder
 
     -- language servers and all the jazz
-    use("williamboman/mason.nvim")
+    use {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+            require "config-plugins.null-ls"
+        end,
+    }
+    use {
+        "williamboman/mason.nvim",
+        opts = {
+            ensure_installed = {
+                "ruff",
+                "black",
+                "isort",
+                "beautysh",
+            }
+        }
+    }
     use("williamboman/mason-lspconfig.nvim")
     use("neovim/nvim-lspconfig")
     use {
@@ -65,7 +82,7 @@ return packer.startup(function(use)
         "APZelos/blamer.nvim",
         config = function() vim.g.blamer_enabled = 1 end
     }
-    use { "kopsha/vim-saver", tag = "1.*" }  -- don't worry, there is no sugar!
+    use { "kopsha/vim-saver", tag = "1.*" } -- don't worry, there is no sugar!
 
     if packer_bootstrap then
         require("packer").sync()

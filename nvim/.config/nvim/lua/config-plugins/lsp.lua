@@ -15,7 +15,7 @@ local use_servers = {
 
 
 local lsp = require("lsp-zero")
-lsp.preset("minimal")
+lsp.preset("recommended")
 lsp.ensure_installed(use_servers)
 
 local cmp = require("cmp")
@@ -23,8 +23,7 @@ cmp.setup({
     mapping = {
         ["<C-j>"] = cmp.mapping.select_next_item(),
         ["<C-k>"] = cmp.mapping.select_prev_item(),
-        ["<C-y>"] = cmp.config.disable,
-        ["<CR>"] = cmp.mapping.confirm({
+        ["<Tab>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true,
         }),
