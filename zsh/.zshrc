@@ -26,7 +26,7 @@ alias vim="nvim"
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR="vim"
 else
-  export EDITOR="ovim"
+  export EDITOR="nvim"
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
