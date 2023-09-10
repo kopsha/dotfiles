@@ -13,10 +13,17 @@ local use_servers = {
     "taplo",
 }
 
-
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
 lsp.ensure_installed(use_servers)
+require("mason-null-ls").setup({
+    ensure_installed = {
+        "ruff",
+        "black",
+        "isort",
+        "beautysh",
+    }
+})
 
 local cmp = require("cmp")
 cmp.setup({

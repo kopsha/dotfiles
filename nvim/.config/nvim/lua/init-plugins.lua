@@ -1,4 +1,3 @@
-
 -- auto install packer if not installed
 local ensure_packer = function()
     local fn = vim.fn
@@ -45,21 +44,12 @@ return packer.startup(function(use)
     -- language servers and all the jazz
     use {
         "jose-elias-alvarez/null-ls.nvim",
+        requires = {"jay-babu/mason-null-ls.nvim"},
         config = function()
             require "config-plugins.null-ls"
         end,
     }
-    use {
-        "williamboman/mason.nvim",
-        opts = {
-            ensure_installed = {
-                "ruff",
-                "black",
-                "isort",
-                "beautysh",
-            }
-        }
-    }
+    use("williamboman/mason.nvim")
     use("williamboman/mason-lspconfig.nvim")
     use("neovim/nvim-lspconfig")
     use {
@@ -70,11 +60,13 @@ return packer.startup(function(use)
             { "williamboman/mason.nvim" },
             { "williamboman/mason-lspconfig.nvim" },
             { "neovim/nvim-lspconfig" },
-
             -- Autocompletion
-            { "hrsh7th/nvim-cmp" },     -- Required
-            { "hrsh7th/cmp-nvim-lsp" }, -- Required
-            { "L3MON4D3/LuaSnip" },     -- Required
+            { 'hrsh7th/nvim-cmp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-path' },
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-nvim-lua' },
         }
     }
 
