@@ -20,7 +20,7 @@ autocmd BufWritePost init-plugins.lua source <afile> | PackerSync
 augroup end
 ]])
 
-packer = require("packer")
+local packer = require("packer")
 return packer.startup(function(use)
     -- packer can manage itself
     use("wbthomason/packer.nvim")
@@ -37,31 +37,28 @@ return packer.startup(function(use)
     use("vim-scripts/ReplaceWithRegister")
     use("numToStr/Comment.nvim")
     use("mbbill/undotree")
-    use {
-        "pocco81/auto-save.nvim",
-        config = function()
-            require("auto-save").setup({
-                debounce_delay = 1250,
-            })
-        end
-    }
 
     -- fuzzy finding w/ telescope
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
     use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })        -- fuzzy finder
 
     -- language servers and all the jazz
-    use("neovim/nvim-lspconfig")
     use("williamboman/mason.nvim")
     use("williamboman/mason-lspconfig.nvim")
+    use("neovim/nvim-lspconfig")
     use {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v2.x",
         requires = {
+            -- LSP Support
+            { "williamboman/mason.nvim" },
+            { "williamboman/mason-lspconfig.nvim" },
+            { "neovim/nvim-lspconfig" },
+
             -- Autocompletion
-            { "hrsh7th/nvim-cmp" },   -- Required
+            { "hrsh7th/nvim-cmp" },     -- Required
             { "hrsh7th/cmp-nvim-lsp" }, -- Required
-            { "L3MON4D3/LuaSnip" },   -- Required
+            { "L3MON4D3/LuaSnip" },     -- Required
         }
     }
 
@@ -69,6 +66,7 @@ return packer.startup(function(use)
         "APZelos/blamer.nvim",
         config = function() vim.g.blamer_enabled = 1 end
     }
+    use("kopsha/vim-saver")
 
     if packer_bootstrap then
         require("packer").sync()
