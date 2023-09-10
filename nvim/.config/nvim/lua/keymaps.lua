@@ -25,7 +25,7 @@ keymap.set("n", "<leader>gs", vim.cmd.Git)
 
 -- smart block move
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("v", "K", ":m '>-2<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- append line bellow to current line but keep cursor position
 keymap.set("n", "J", "mzJ`z")

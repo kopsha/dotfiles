@@ -19,16 +19,14 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 export LANG=en_US.UTF-8
-
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='mvim'
-fi
-
 original_vim=$(which vim)
 alias ovim="$original_vim"
 alias vim="nvim"
 
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR="vim"
+else
+  export EDITOR="ovim"
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
