@@ -65,7 +65,7 @@ return packer.startup(function(use)
         "APZelos/blamer.nvim",
         config = function() vim.g.blamer_enabled = 1 end
     }
-    use("kopsha/vim-saver")
+    use { "kopsha/vim-saver", tag = "1.*" }  -- don't worry, there is no sugar!
 
     if packer_bootstrap then
         require("packer").sync()
