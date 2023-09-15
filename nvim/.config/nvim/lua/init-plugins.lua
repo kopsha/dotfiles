@@ -52,6 +52,7 @@ return packer.startup(function(use)
     use("williamboman/mason.nvim")
     use("williamboman/mason-lspconfig.nvim")
     use("neovim/nvim-lspconfig")
+    use { "L3MON4D3/LuaSnip", tag = "v2.*" }
     use {
         "VonHeikemen/lsp-zero.nvim",
         branch = "v2.x",
@@ -61,12 +62,12 @@ return packer.startup(function(use)
             { "williamboman/mason-lspconfig.nvim" },
             { "neovim/nvim-lspconfig" },
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },
-            { 'hrsh7th/cmp-buffer' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp' },
-            { 'hrsh7th/cmp-nvim-lua' },
+            { "hrsh7th/nvim-cmp" },
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-path" },
+            { "saadparwaiz1/cmp_luasnip" },
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "hrsh7th/cmp-nvim-lua" },
         }
     }
 
@@ -74,6 +75,7 @@ return packer.startup(function(use)
         "APZelos/blamer.nvim",
         config = function() vim.g.blamer_enabled = 1 end
     }
+
     use { "kopsha/vim-saver", tag = "1.*" } -- don't worry, there is no sugar!
 
     if packer_bootstrap then
