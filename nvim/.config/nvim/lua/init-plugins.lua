@@ -33,7 +33,6 @@ return packer.startup(function(use)
     use("tpope/vim-surround")
     use("tpope/vim-vinegar")
     use("tpope/vim-fugitive")
-    use("vim-scripts/ReplaceWithRegister")
     use("numToStr/Comment.nvim")
     use("mbbill/undotree")
 
