@@ -25,7 +25,9 @@ local use_servers = {
 
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
-lsp.ensure_installed(use_servers)
+
+lsp.ensure_installed(vim.tbl_map(function(server) return server.name end, use_servers))
+
 require("mason-null-ls").setup({
     ensure_installed = {
         "ruff",
