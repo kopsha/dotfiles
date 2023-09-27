@@ -1,0 +1,45 @@
+#!/usr/bin/env zsh
+set -e
+
+## config
+WORK_AREAS=(
+    ~/work
+    ~/proj
+)
+
+## actions
+usage()
+{
+    echo ""
+    echo "Usage: $0 [-h | --help]"
+    echo "Description: Creates a new tmux session starting from the selected project folder"
+    echo ""
+    printf -v joined_areas '%s, ' "${WORK_AREAS[@]}"
+    echo "Using lookup folders: ${joined_areas}"
+}
+
+open_window()
+{
+    folder=$(cat <(find ${WORK_AREAS[@]} -mindepth 1 -maxdepth 1 -type d) <(realpath ~/dotfiles) | fzf)
+    [[ -z $folder ]] && exit 0
+
+    window_name=$(basename "$folder" | tr . _)
+
+    echo "Creating $window_name window..."
+    tmux new-window -n $window_name -c $folder
+    if [[ -d "$folder/.venv" ]]; then
+        tmux send-keys -t $window_name "source .venv/bin/activate" C-m
+    fi
+}
+
+## main
+arg=${1:-}
+case $arg in
+    "")
+        open_window
+        ;;
+    -h|--help|*)
+        usage
+        exit
+        ;;
+esac

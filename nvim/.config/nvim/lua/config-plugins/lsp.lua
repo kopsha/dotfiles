@@ -3,14 +3,24 @@ require("mason-lspconfig").setup()
 
 local use_servers = {
     -- language servers
-    "bashls",
-    "dockerls",
-    "jsonls",
-    "lua_ls",
-    "vimls",
-    "marksman",
-    "pyright",
-    "taplo",
+    { name = "bashls" },
+    { name = "dockerls" },
+    { name = "jsonls" },
+    { name = "lua_ls" },
+    { name = "vimls" },
+    { name = "marksman" },
+    {
+        name = "pyright",
+        settings = {
+            python = {
+                analysis = {
+                    autoImportCompletions = false,
+                }
+            }
+        }
+    },
+    { name = "taplo" },
+    { name = "tsserver" },
 }
 
 local lsp = require("lsp-zero")
@@ -47,11 +57,18 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Configure all language servers
 local lspconfig = require "lspconfig"
-for _, lsp in ipairs(use_servers) do
-    lspconfig[lsp].setup {
+
+for _, server in ipairs(use_servers) do
+    local config = {
         capabilities = capabilities,
         on_attach = on_attach
     }
+
+    if server.settings then
+        config.settings = server.settings
+    end
+
+    lspconfig[server.name].setup(config)
 end
 
 lsp.setup()
