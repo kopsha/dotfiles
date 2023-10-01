@@ -33,8 +33,15 @@ return packer.startup(function(use)
     use("tpope/vim-surround")
     use("tpope/vim-vinegar")
     use("tpope/vim-fugitive")
-    use("numToStr/Comment.nvim")
+    use("tpope/vim-commentary")
+    use("tpope/vim-repeat")
     use("mbbill/undotree")
+    use("cohama/lexima.vim")
+    use {
+        "echasnovski/mini.splitjoin",
+        branch = "stable",
+        config = function() require("mini.splitjoin").setup() end
+    }
 
     -- fuzzy finding w/ telescope
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
@@ -43,7 +50,7 @@ return packer.startup(function(use)
     -- language servers and all the jazz
     use {
         "jose-elias-alvarez/null-ls.nvim",
-        requires = {"jay-babu/mason-null-ls.nvim"},
+        requires = { "jay-babu/mason-null-ls.nvim" },
         config = function()
             require "config-plugins.null-ls"
         end,

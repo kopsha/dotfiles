@@ -31,8 +31,15 @@ keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- format current buffer
-keymap.set("n", "<leader>{}", function() vim.lsp.buf.format() end)
+keymap.set("n", "<leader>==", function() vim.lsp.buf.format() end)
 
 -- replace text under cursor
 keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Jump to start and end of line
+keymap.set({"n", "v"}, "H", "^", { noremap = true, silent = true })
+keymap.set({"n", "v"}, "L", "$", { noremap = true, silent = true })
+
+keymap.set({"n", "v"}, "<leader>/", "<cmd>:nohlsearch<CR>")
+keymap.set("n", "Q", "<nop>")
 
