@@ -21,12 +21,12 @@ augroup end
 
 local packer = require("packer")
 return packer.startup(function(use)
-    -- packer can manage itself
     use("wbthomason/packer.nvim")
     use("nvim-lua/plenary.nvim")
 
-    use("bluz71/vim-nightfly-guicolors")
     use("christoomey/vim-tmux-navigator")
+    use("itchyny/lightline.vim")
+    use("bluz71/vim-nightfly-guicolors")
 
     -- essential plugins
     use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
