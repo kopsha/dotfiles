@@ -3,3 +3,5 @@
 	email = florin.ciurcanu@gmail.com
 [pager]
 	branch = false
+[push]
+	autoSetupRemote = true
