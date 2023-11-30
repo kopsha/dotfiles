@@ -12,6 +12,8 @@ keymap.set("n", "<leader>gs", vim.cmd.Git)
 -- smart block move
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+keymap.set("v", "<", "<gv")
+keymap.set("v", ">", ">gv")
 
 -- append line bellow to current line but keep cursor position
 keymap.set("n", "J", "mzJ`z")
@@ -25,10 +27,9 @@ keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
 
 -- quickfixlist navigation
-keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+keymap.set("n", "<M-k>", "<cmd>cnext<CR>zz")
+keymap.set("n", "<M-j>", "<cmd>cprev<CR>zz")
+keymap.set("n", "<M-q>", "<cmd>cclose<CR>")
 
 -- format current buffer
 keymap.set("n", "<leader>==", function() vim.lsp.buf.format() end)
