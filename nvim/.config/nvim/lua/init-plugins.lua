@@ -31,12 +31,14 @@ return packer.startup(function(use)
     -- essential plugins
     use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
     use("tpope/vim-surround")
+    use("tpope/vim-endwise")
+    use("rstacruz/vim-closer")
     use("tpope/vim-vinegar")
     use("tpope/vim-fugitive")
     use("tpope/vim-commentary")
     use("tpope/vim-repeat")
+
     use("mbbill/undotree")
-    use("cohama/lexima.vim")
     use {
         "echasnovski/mini.splitjoin",
         branch = "stable",
