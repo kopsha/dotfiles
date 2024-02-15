@@ -21,6 +21,16 @@ local use_servers = {
     },
     { name = "taplo" },
     { name = "tsserver" },
+    {
+        name = "helm_ls",
+        settings = {
+            ["helm-ls"] = {
+                yamlls = {
+                    path = "yaml-language-server"
+                },
+            },
+        },
+    },
 }
 
 local lsp = require("lsp-zero")

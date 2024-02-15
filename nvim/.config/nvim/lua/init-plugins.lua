@@ -78,6 +78,7 @@ return packer.startup(function(use)
             { "hrsh7th/cmp-nvim-lua" },
         }
     }
+    use { "towolf/vim-helm", ft = "helm" }
 
     use {
         "APZelos/blamer.nvim",
