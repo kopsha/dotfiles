@@ -67,12 +67,12 @@ post_create_hook()
 ## main
 check_tmux_running
 
-mode="session" # default to session
+mode="window"
 arg=${1:-}
 
 case $arg in
-    -w|--window)
-        mode="window"
+    -s|--session)
+        mode="session"
         ;;
     -h|--help)
         usage
