@@ -1,43 +1,38 @@
-local opt = vim.opt -- for conciseness
+vim.opt.number = true
+vim.opt.relativenumber = true
 
--- line numbers
-opt.relativenumber = true
-opt.number = true
+vim.opt.mouse = "a"
+vim.opt.showmode = false
+vim.opt.clipboard = "unnamedplus"
+vim.opt.breakindent = true
 
--- tabs & indentation
-opt.tabstop = 4
-opt.shiftwidth = 4
-opt.expandtab = true -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
-opt.smartindent = true
+vim.opt.undofile = true
 
-opt.wrap = false -- disable line wrapping
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
--- backup and swap
-opt.swapfile = false
-opt.backup = false
-opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-opt.undofile = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true -- expand tab to spaces
+vim.opt.autoindent = true -- copy indent from current line when starting new one
+vim.opt.smartindent = true
+vim.opt.wrap = false -- disable line wrapping
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
--- search settings
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = true
-opt.incsearch = true
+vim.opt.updatetime = 618
+vim.opt.timeoutlen = 382
 
--- appearance and stuff
-opt.cursorline = false
-opt.scrolloff = 7
-opt.signcolumn = "yes"
-opt.colorcolumn = "80"
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.inccommand = "split"
 
--- allow backspace on indent, end of line or insert mode start position
-opt.backspace = "indent,eol,start"
+vim.opt.cursorline = false
+vim.opt.scrolloff = 10
+vim.opt.signcolumn = "yes"
+vim.opt.colorcolumn = "80"
 
--- split windows
-opt.splitright = true -- split vertical window to the right
-opt.splitbelow = true -- split horizontal window to the bottom
-
-opt.iskeyword:append("-") -- consider string-string as whole word
-
-vim.g.netrw_liststyle=3 -- show as tree
+vim.opt.backspace = "indent,eol,start"
+vim.opt.iskeyword:append("-") -- consider string-string as whole word

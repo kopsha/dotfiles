@@ -1,46 +1,53 @@
--- The working man setup
-vim.g.mapleader = "\\"
-local keymap = vim.keymap
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- window management
-keymap.set("n", "<leader>|", "<C-w>v")  -- vertical split
-keymap.set("n", "<leader>\\", "<C-w>s") -- horizontal split
+vim.keymap.set("n", "<leader>|", "<C-w>v") -- vertical split
+vim.keymap.set("n", "<leader>\\", "<C-w>s") -- horizontal split
 
-keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-keymap.set("n", "<leader>gs", vim.cmd.Git)
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
--- smart block move
-keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-keymap.set("v", "<", "<gv")
-keymap.set("v", ">", ">gv")
+-- Smart block move
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
 
--- append line bellow to current line but keep cursor position
-keymap.set("n", "J", "mzJ`z")
+-- Append line bellow to current line but keep cursor position
+vim.keymap.set("n", "J", "mzJ`z")
 
--- keep cursor in the middle
-keymap.set("n", "<C-d>", "<C-d>zz")
-keymap.set("n", "<C-u>", "<C-u>zz")
+-- Keep search terms in the middle
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
 
--- keep search terms in the middle
-keymap.set("n", "n", "nzzzv")
-keymap.set("n", "N", "Nzzzv")
-
--- quickfixlist navigation
-keymap.set("n", "<M-k>", "<cmd>cnext<CR>zz")
-keymap.set("n", "<M-j>", "<cmd>cprev<CR>zz")
-keymap.set("n", "<M-q>", "<cmd>cclose<CR>")
-
--- format current buffer
-keymap.set("n", "<leader>==", function() vim.lsp.buf.format() end)
-
--- replace text under cursor
-keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- Quickfixlist navigation
+vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>")
+vim.keymap.set("n", "<leader>qc", "<cmd>cclose<CR>")
+vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
 
 -- Jump to start and end of line
-keymap.set({"n", "v"}, "H", "^", { noremap = true, silent = true })
-keymap.set({"n", "v"}, "L", "$", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "H", "^", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "L", "$", { noremap = true, silent = true })
 
-keymap.set({"n", "v"}, "<leader>/", "<cmd>:nohlsearch<CR>")
-keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "Q", "<nop>") -- huh
 
+-- Diagnostic keymaps
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+-- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+-- or just use <C-\><C-n> to exit terminal mode
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+-- TIP: Disable arrow keys in normal mode
+vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
+
+--  Use CTRL+<hjkl> to switch between windows
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
