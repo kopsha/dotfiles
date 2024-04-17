@@ -21,7 +21,7 @@ usage()
 
 check_tmux_running()
 {
-    if ! pgrep -x "tmux" > /dev/null
+    if ! pgrep -fx "tmux" > /dev/null
     then
         echo "tmux is not running. Please start tmux first."
         exit 1
