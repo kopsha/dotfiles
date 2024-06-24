@@ -16,20 +16,13 @@ DISABLE_AUTO_TITLE="true"
 plugins=(git virtualenv)
 
 source $ZSH/oh-my-zsh.sh
+source /usr/share/fzf/shell/key-bindings.zsh
 
 # User configuration
 export LANG=en_US.UTF-8
-original_vim=$(which vim)
-alias ovim="$original_vim"
 alias vim="nvim"
+export EDITOR="nvim"
 
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR="vim"
-else
-  export EDITOR="nvim"
-fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
