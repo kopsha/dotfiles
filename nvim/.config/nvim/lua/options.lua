@@ -5,7 +5,7 @@ vim.opt.mouse = "a"
 vim.opt.showmode = false
 vim.opt.breakindent = true
 
-vim.opt.undofile = true
+vim.opt.undofile = false
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
