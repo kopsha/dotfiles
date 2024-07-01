@@ -16,7 +16,17 @@ DISABLE_AUTO_TITLE="true"
 plugins=(git virtualenv)
 
 source $ZSH/oh-my-zsh.sh
-source /usr/share/fzf/shell/key-bindings.zsh
+case $OSTYPE in
+    linux*)
+        source /usr/share/fzf/shell/key-bindings.zsh
+	;;
+    darwin*)
+        source <(fzf --zsh)
+	;;
+    *)
+        printf "The $OSTYPE is not supported.\n"
+	;;
+esac
 
 # User configuration
 export LANG=en_US.UTF-8
