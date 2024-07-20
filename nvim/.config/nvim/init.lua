@@ -269,6 +269,10 @@ require("lazy").setup({
 				ruff_lsp = {
 					settings = {
 						args = {},
+					},
+				},
+				pyright = {
+					settings = {
 						python = {
 							analysis = {
 								autoImportCompletions = false,
