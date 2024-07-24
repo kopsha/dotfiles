@@ -491,6 +491,7 @@ require("lazy").setup({
 			--  - yinq - [Y]ank [I]nside [N]ext [']quote
 			--  - ci'  - [C]hange [I]nside [']quote
 			require("mini.ai").setup({ n_lines = 500 })
+			require("mini.pairs").setup()
 			require("mini.surround").setup()
 			require("mini.splitjoin").setup()
 
