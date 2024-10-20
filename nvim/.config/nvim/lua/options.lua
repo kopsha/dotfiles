@@ -18,11 +18,9 @@ vim.opt.expandtab = true -- expand tab to spaces
 vim.opt.autoindent = true -- copy indent from current line when starting new one
 vim.opt.smartindent = true
 vim.opt.wrap = false -- disable line wrapping
+
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-
-vim.opt.updatetime = 618
-vim.opt.timeoutlen = 382
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
