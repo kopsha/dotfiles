@@ -437,16 +437,8 @@ require("lazy").setup({
 		},
 	},
 
-	{
-		"echasnovski/mini.splitjoin",
-		version = "*",
-		opts = { mappings = {
-			toggle = "gS",
-			split = "",
-			join = "",
-		} },
-	},
-	{ "echasnovski/mini.statusline", version = "*" },
+	{ "echasnovski/mini.splitjoin", version = "*", opts = {} },
+	{ "echasnovski/mini.statusline", version = "*", opts = {} },
 
 	{
 		"bluz71/vim-nightfly-colors",
