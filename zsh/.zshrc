@@ -13,7 +13,7 @@ DISABLE_AUTO_TITLE="true"
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-plugins=(git virtualenv)
+plugins=(git virtualenv zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
 case $OSTYPE in
