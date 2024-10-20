@@ -156,18 +156,22 @@ require("lazy").setup({
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
 				ruff_lsp = {
+					cmd = { "ruff-lsp" },
 					settings = {
 						args = {},
 					},
 				},
 				pyright = {
-					-- settings = {
-					-- 	python = {
-					-- 		analysis = {
-					-- 			autoImportCompletions = false,
-					-- 		},
-					-- 	},
-					-- },
+					settings = {
+						pyright = {
+							disableOrganizeImports = true, -- Using Ruff's import organizer
+						},
+						python = {
+							analysis = {
+								ignore = { "*" },
+							},
+						},
+					},
 				},
 				helm_ls = {
 					settings = {
@@ -260,6 +264,7 @@ require("lazy").setup({
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
+	{ "nvim-treesitter/nvim-treesitter-textobjects" },
 
 	{ -- Autocompletion
 		"hrsh7th/nvim-cmp",
@@ -433,10 +438,15 @@ require("lazy").setup({
 	},
 
 	{
-		"echasnovski/mini.statusline",
+		"echasnovski/mini.splitjoin",
 		version = "*",
-		opts = { use_icons = vim.g.have_nerd_font },
+		opts = { mappings = {
+			toggle = "gS",
+			split = "",
+			join = "",
+		} },
 	},
+	{ "echasnovski/mini.statusline", version = "*" },
 
 	{
 		"bluz71/vim-nightfly-colors",
