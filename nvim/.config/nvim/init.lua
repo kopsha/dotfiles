@@ -3,7 +3,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.g.have_nerd_font = false
--- vim.g.netrw_liststyle = 3 -- show as tree
 
 require("options")
 require("keymaps")
