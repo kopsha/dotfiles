@@ -161,18 +161,18 @@ require("lazy").setup({
 						args = {},
 					},
 				},
-				pyright = {
-					settings = {
-						pyright = {
-							disableOrganizeImports = true, -- Using Ruff's import organizer
-						},
-						python = {
-							analysis = {
-								ignore = { "*" },
-							},
-						},
-					},
-				},
+				-- pyright = {
+				-- 	settings = {
+				-- 		-- pyright = {
+				-- 		-- 	disableOrganizeImports = true, -- Using Ruff's import organizer
+				-- 		-- },
+				-- 		python = {
+				-- 			analysis = {
+				-- 				ignore = { "*" },
+				-- 			},
+				-- 		},
+				-- 	},
+				-- },
 				helm_ls = {
 					settings = {
 						yamlls = {
@@ -400,7 +400,7 @@ require("lazy").setup({
 			notify_on_error = true,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "isort", "ruff format" },
+				python = { "ruff_organize_imports", "ruff_format" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 			},
 		},
