@@ -161,18 +161,18 @@ require("lazy").setup({
 						args = {},
 					},
 				},
-				-- pyright = {
-				-- 	settings = {
-				-- 		-- pyright = {
-				-- 		-- 	disableOrganizeImports = true, -- Using Ruff's import organizer
-				-- 		-- },
-				-- 		python = {
-				-- 			analysis = {
-				-- 				ignore = { "*" },
-				-- 			},
-				-- 		},
-				-- 	},
-				-- },
+				pyright = {
+					settings = {
+						pyright = {
+							disableOrganizeImports = true, -- Using Ruff's import organizer
+						},
+						python = {
+							analysis = {
+								ignore = { "*" },
+							},
+						},
+					},
+				},
 				helm_ls = {
 					settings = {
 						yamlls = {
