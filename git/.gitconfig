@@ -1,15 +1,15 @@
 [user]
-	name = Florin Ciurcanu
-	email = florin.ciurcanu@gmail.com
+    name = Florin Ciurcanu
+    email = florin.ciurcanu@gmail.com
 [pager]
-	branch = false
+    branch = false
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
 [alias]
-	count-lines = "!f() { git log --author=\"$1\" --since=\"$2\" --until=\"$3\" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\\n\", add, subs, loc }'; }; f"
-	close-branch = "! branch=$(git branch --show-current); git checkout develop; git pull; git branch -d $branch"
+    count-lines = "!f() { git log --author=\"$1\" --since=\"$2\" --until=\"$3\" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\\n\", add, subs, loc }'; }; f"
+    close-branch = "! branch=$(git branch --show-current); default=$(git remote show origin | grep 'HEAD branch' | sed 's/.*: //'); git checkout $default; git pull; git branch -d $branch"
 [core]
-	autolf = true
+    autolf = true
 
 [includeIf "hasconfig:remote.*.url:git@bitbucket.org:jibecompany/**"]
-	path = ~/work/.gitconfig-jibe
+    path = ~/work/.gitconfig-jibe
