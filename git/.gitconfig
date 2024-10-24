@@ -7,7 +7,7 @@
     autoSetupRemote = true
 [alias]
     count-lines = "!f() { git log --author=\"$1\" --since=\"$2\" --until=\"$3\" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\\n\", add, subs, loc }'; }; f"
-    close-branch = "! branch=$(git branch --show-current); default=$(git remote show origin | grep "HEAD branch" | sed 's/.*: //'); git checkout $default; git pull; git branch -d $branch"
+    close-branch = "! branch=$(git branch --show-current); default=$(git remote show origin | grep "HEAD $branch" | sed 's/.*: //'); git checkout $default; git pull; git branch -d $branch"
 [core]
     autolf = true
 
