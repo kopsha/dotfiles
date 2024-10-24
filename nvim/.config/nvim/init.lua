@@ -90,7 +90,7 @@ require("lazy").setup({
 					map("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
 					map("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
 					map("<C-s>", vim.lsp.buf.signature_help, "[S]ignature Help")
-					map("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+					map("gT", vim.lsp.buf.type_definition, "[T]ype Definition")
 					map("<leader>ds", vim.lsp.buf.document_symbol, "[D]ocument [S]ymbols")
 					map("<leader>ws", vim.lsp.buf.workspace_symbol, "[W]orkspace [S]ymbols")
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
