@@ -1,5 +1,6 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.g.netrw_liststyle = 1
 
 vim.opt.updatetime = 1618
 vim.opt.timeoutlen = 618
