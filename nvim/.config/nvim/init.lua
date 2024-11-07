@@ -155,11 +155,11 @@ require("lazy").setup({
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
-				ruff_lsp = {
-					cmd = { "ruff-lsp" },
-					settings = {
-						args = {},
-					},
+				ruff = {
+					cmd = { "ruff" },
+					filetypes = { "python" },
+					settings = {},
+					single_file_support = true,
 				},
 				pyright = {
 					settings = {
@@ -182,9 +182,6 @@ require("lazy").setup({
 				},
 				ts_ls = {},
 				lua_ls = {
-					-- cmd = {...},
-					-- filetypes = { ...},
-					-- capabilities = {},
 					settings = {
 						Lua = {
 							completion = {
@@ -442,8 +439,11 @@ require("lazy").setup({
 		},
 	},
 
+	-- These mini plugins are not all that mini
 	{ "echasnovski/mini.splitjoin", version = "*", opts = {} },
 	{ "echasnovski/mini.statusline", version = "*", opts = {} },
+
+	"https://github.com/Raimondi/delimitMate",
 
 	{
 		"bluz71/vim-nightfly-colors",

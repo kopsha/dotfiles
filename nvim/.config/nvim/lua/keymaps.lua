@@ -56,14 +56,8 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Automatically close brackets, parethesis, and quotes
-vim.keymap.set("i", "'", "''<left>")
-vim.keymap.set("i", '"', '""<left>')
-vim.keymap.set("i", "(", "()<left>")
-vim.keymap.set("i", "[", "[]<left>")
-vim.keymap.set("i", "{", "{}<left>")
-vim.keymap.set("i", "<", "<><left>")
-vim.keymap.set("i", "/*", "/**/<left><left>")
-
 -- Replace all instances of highlighted word
 vim.keymap.set("v", "<leader>rw", '"hy:%s/<C-r>h//g<left><left>')
+
+vim.keymap.set({ "i", "n" }, ",,", "<Esc>A,")
+vim.keymap.set({ "i", "n" }, "::", "<Esc>A:")
