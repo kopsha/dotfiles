@@ -59,5 +59,3 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- Replace all instances of highlighted word
 vim.keymap.set("v", "<leader>rw", '"hy:%s/<C-r>h//g<left><left>')
 
-vim.keymap.set({ "i", "n" }, ",,", "<Esc>A,")
-vim.keymap.set({ "i", "n" }, "::", "<Esc>A:")
