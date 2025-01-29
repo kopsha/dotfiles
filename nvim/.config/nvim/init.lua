@@ -409,6 +409,7 @@ require("lazy").setup({
 			formatters = {
 				clang_format = {
 					command = "clang-format",
+					args = { "--style=file" },
 					stdin = true,
 				},
 			},
