@@ -192,6 +192,16 @@ require("lazy").setup({
 						},
 					},
 				},
+				clangd = {
+					cmd = { "clangd", "--compile-commands-dir=build" },
+					root_dir = require("lspconfig.util").root_pattern(
+						"CMakeLists.txt",
+						"compile_commands.json",
+						".git"
+					),
+					filetypes = { "c", "cpp", "objc", "objcpp" },
+					single_file_support = true,
+				},
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -393,20 +403,18 @@ require("lazy").setup({
 				lua = { "stylua" },
 				python = { "ruff_organize_imports", "ruff_format" },
 				javascript = { "prettierd", "prettier", stop_after_first = true },
+				cpp = { "clang_format" },
+				c = { "clang_format" },
+			},
+			formatters = {
+				clang_format = {
+					command = "clang-format",
+					stdin = true,
+				},
 			},
 		},
 	},
 
-	{
-		"SirVer/ultisnips",
-		config = function()
-			vim.g.UltiSnipsExpandTrigger = "<tab>"
-			vim.g.UltiSnipsJumpForwardTrigger = "<c-b>"
-			vim.g.UltiSnipsJumpBackwardTrigger = "<c-z>"
-			-- If you want :UltiSnipsEdit to split your window.
-			vim.g.UltiSnipsEditSplit = "vertical"
-		end,
-	},
 	"honza/vim-snippets",
 
 	"tpope/vim-fugitive",
@@ -441,7 +449,11 @@ require("lazy").setup({
 
 	-- These mini plugins are not all that mini
 	{ "echasnovski/mini.splitjoin", version = "*", opts = {} },
-	{ "echasnovski/mini.statusline", version = "*", opts = {} },
+	{
+		"echasnovski/mini.statusline",
+		version = "*",
+		opts = { use_icons = false },
+	},
 
 	"https://github.com/Raimondi/delimitMate",
 
