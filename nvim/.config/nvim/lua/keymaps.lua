@@ -2,6 +2,10 @@
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+-- Had enough of yank to system registry
+vim.keymap.set("n", "Y", '"+y', { noremap = true, silent = true })
+vim.keymap.set("v", "Y", '"+y', { noremap = true, silent = true })
+
 -- Buffer navigation
 vim.keymap.set("n", "<Tab>", ":bnext<CR>")
 vim.keymap.set("n", "<S-Tab>", ":bprev<CR>")

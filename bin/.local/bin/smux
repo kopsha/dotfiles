@@ -70,10 +70,14 @@ case $arg in
         usage
         exit
         ;;
-    -a|--add)
-        open_window
+    -n|--new)
+        open_session
         ;;
     "")
-        open_session
+        if [[ -z ${TMUX:-} ]]; then
+            open_session
+        else
+            open_window
+        fi
         ;;
 esac
