@@ -1,6 +1,7 @@
 [user]
     name = Florin Ciurcanu
     email = florin.ciurcanu@gmail.com
+	signingkey = 794463A475697724
 [pager]
     branch = false
 [push]

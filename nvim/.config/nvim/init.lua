@@ -1,7 +1,6 @@
 -- Set <space> as the leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
 vim.g.have_nerd_font = false
 
 require("options")
@@ -193,14 +192,32 @@ require("lazy").setup({
 					},
 				},
 				clangd = {
-					cmd = { "clangd", "--compile-commands-dir=build" },
+					cmd = {
+						"/usr/bin/clangd",
+						"--compile-commands-dir=./build",
+						"--query-driver=/usr/bin/clang*",
+						"--clang-tidy",
+						"--background-index",
+						"--all-scopes-completion",
+						"--completion-style=detailed",
+                        "--experimental-modules-support",
+						"--header-insertion=iwyu",
+						"--pch-storage=memory",
+                        "--enable-config",
+					},
+					capabilities = require("cmp_nvim_lsp").default_capabilities({
+						offsetEncoding = { "utf-8", "utf-16" },
+						textDocument = {
+							completion = {
+								editsNearCursor = true,
+							},
+						},
+					}),
 					root_dir = require("lspconfig.util").root_pattern(
 						"CMakeLists.txt",
 						"compile_commands.json",
 						".git"
 					),
-					filetypes = { "c", "cpp", "objc", "objcpp" },
-					single_file_support = true,
 				},
 			}
 
@@ -243,6 +260,7 @@ require("lazy").setup({
 				"python",
 				"bash",
 				"c",
+				"cpp",
 				"html",
 				"css",
 				"lua",
