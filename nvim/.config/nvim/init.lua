@@ -172,13 +172,6 @@ require("lazy").setup({
 						},
 					},
 				},
-				helm_ls = {
-					settings = {
-						yamlls = {
-							path = "yaml-language-server",
-						},
-					},
-				},
 				ts_ls = {},
 				lua_ls = {
 					settings = {

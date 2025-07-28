@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+
+HOUR=$(date +'%l') # 1-12 format, space-padded
+MERIDIAN=$(date +'%p') # AM or PM
+espeak-ng "It's $HOUR o'clock" -v en-gb -p 15 -s 144
+
