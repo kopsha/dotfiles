@@ -6,17 +6,10 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "Y", '"+y', { noremap = true, silent = true })
 vim.keymap.set("v", "Y", '"+y', { noremap = true, silent = true })
 
--- Buffer navigation
-vim.keymap.set("n", "<Tab>", ":bnext<CR>")
-vim.keymap.set("n", "<S-Tab>", ":bprev<CR>")
-vim.keymap.set("n", "<leader>b", ":Buffers<CR>")
-vim.keymap.set("n", "<leader>d", ":bdelete!<CR>")
-
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
+-- Tabs navigation
+vim.keymap.set("n", "<Tab>", "<cmd>tabn<CR>")
+vim.keymap.set("n", "<S-Tab>", "<cmd>tabp<CR>")
+vim.keymap.set("n", "<leader><Tab>", "<cmd>tabs<CR>")
 
 --  Use CTRL+<hjkl> to switch between windows
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
@@ -40,8 +33,8 @@ local function toggle_quickfix()
 	end
 end
 vim.keymap.set("n", "<leader>q", toggle_quickfix, { desc = "Toggle Quickfix" })
-vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>")
 
 -- Jump to start and end of line
 vim.keymap.set({ "n", "v" }, "H", "^", { noremap = true, silent = true })
@@ -62,4 +55,3 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- Replace all instances of highlighted word
 vim.keymap.set("v", "<leader>rw", '"hy:%s/<C-r>h//g<left><left>')
-
