@@ -33,3 +33,7 @@
 
 [includeIf "hasconfig:remote.*.url:git@bitbucket.org:jibecompany/**"]
     path = ~/work/.gitconfig-jibe
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
