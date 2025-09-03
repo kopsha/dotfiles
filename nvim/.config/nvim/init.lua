@@ -37,6 +37,24 @@ require("lazy").setup({
 		},
 		config = function()
 			vim.g.fzf_layout = { down = "40%" }
+			-- helper: send fzf selection(s) to quickfix
+			local function fzf_to_quickfix(lines)
+				if not lines or #lines == 0 then
+					return
+				end
+				local items = {}
+				for _, line in ipairs(lines) do
+					table.insert(items, { filename = line })
+				end
+				vim.fn.setqflist({}, " ", { title = "fzf results", items = items })
+				vim.cmd("copen")
+			end
+
+			-- make ctrl-q a universal action in any fzf.vim command
+			vim.g.fzf_action = {
+				["ctrl-q"] = fzf_to_quickfix,
+			}
+
 			-- general searches
 			vim.keymap.set("n", "<leader>sh", ":Helptags<CR>", { desc = "[S]earch [H]elp" })
 			vim.keymap.set("n", "<leader>sk", ":Maps<CR>", { desc = "[S]earch [K]eymaps" })
@@ -193,10 +211,10 @@ require("lazy").setup({
 						"--background-index",
 						"--all-scopes-completion",
 						"--completion-style=detailed",
-                        "--experimental-modules-support",
+						"--experimental-modules-support",
 						"--header-insertion=iwyu",
 						"--pch-storage=memory",
-                        "--enable-config",
+						"--enable-config",
 					},
 					capabilities = require("cmp_nvim_lsp").default_capabilities({
 						offsetEncoding = { "utf-8", "utf-16" },
@@ -248,6 +266,7 @@ require("lazy").setup({
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			ensure_installed = {
 				"python",
@@ -274,6 +293,15 @@ require("lazy").setup({
 				--  the list of additional_vim_regex_highlighting and disabled languages for indent.
 				additional_vim_regex_highlighting = { "ruby" },
 			},
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "<C-space>",
+					node_incremental = "<C-space>",
+					scope_incremental = "<C-S-Space>",
+					node_decremental = "<BS>",
+				},
+			},
 			indent = { enable = true, disable = { "ruby" } },
 		},
 		config = function(_, opts)
@@ -292,18 +320,66 @@ require("lazy").setup({
 						enable = true,
 						lookahead = true,
 						keymaps = {
-							["aa"] = "@parameter.outer",
-							["ia"] = "@parameter.inner",
-							["ab"] = "@block.outer",
-							["ib"] = "@block.inner",
-							["ac"] = "@conditional.outer",
-							["ic"] = "@conditional.inner",
-							["af"] = "@function.outer",
-							["if"] = "@function.inner",
-							["am"] = "@comment.outer",
-							["im"] = "@comment.inner",
-							["ao"] = "@class.outer",
-							["io"] = "@class.inner",
+							["a="] = { query = "@assignment.outer", desc = "Outer assignment" },
+							["i="] = { query = "@assignment.inner", desc = "Inner assignment" },
+							["aa"] = { query = "@parameter.outer", desc = "Outer parameter" },
+							["ia"] = { query = "@parameter.inner", desc = "Inner parameter" },
+							["ab"] = { query = "@block.outer", desc = "Outer block" },
+							["ib"] = { query = "@block.inner", desc = "Inner block" },
+							["ac"] = { query = "@conditional.outer", desc = "Outer conditional" },
+							["ic"] = { query = "@conditional.inner", desc = "Inner conditional" },
+							["af"] = { query = "@function.outer", desc = "Outer function definition" },
+							["if"] = { query = "@function.inner", desc = "Inner function definition" },
+							["al"] = { query = "@call.outer", desc = "Outer function call" },
+							["il"] = { query = "@call.inner", desc = "Inner function call" },
+							["am"] = { query = "@comment.outer", desc = "Outer comment" },
+							["im"] = { query = "@comment.inner", desc = "Inner comment" },
+							["as"] = { query = "@class.outer", desc = "Outer class" },
+							["is"] = { query = "@class.inner", desc = "Inner class" },
+						},
+					},
+					move = {
+						enable = true,
+						set_jumps = true,
+						goto_next_start = {
+							["]="] = { query = "@assignment.outer", desc = "Next assignment" },
+							["]a"] = { query = "@parameter.outer", desc = "Next parameter" },
+							["]b"] = { query = "@block.outer", desc = "Next block" },
+							["]c"] = { query = "@conditional.outer", desc = "Next conditional" },
+							["]f"] = { query = "@function.outer", desc = "Next function definition" },
+							["]l"] = { query = "@call.outer", desc = "Next function call" },
+							["]m"] = { query = "@comment.outer", desc = "Next comment" },
+							["]s"] = { query = "@class.outer", desc = "Next class" },
+						},
+						goto_next_end = {
+							["]+"] = { query = "@assignment.outer", desc = "Next assignment end" },
+							["]A"] = { query = "@parameter.outer", desc = "Next parameter end" },
+							["]B"] = { query = "@block.outer", desc = "Next block end" },
+							["]C"] = { query = "@conditional.outer", desc = "Next conditional end" },
+							["]F"] = { query = "@function.outer", desc = "Next function end" },
+							["]L"] = { query = "@call.outer", desc = "Next function call end" },
+							["]M"] = { query = "@comment.outer", desc = "Next comment end" },
+							["]S"] = { query = "@class.outer", desc = "Next class end" },
+						},
+						goto_previous_start = {
+							["[="] = { query = "@assignment.outer", desc = "Previous assignment" },
+							["[a"] = { query = "@parameter.outer", desc = "Previous parameter" },
+							["[b"] = { query = "@block.outer", desc = "Previous block" },
+							["[c"] = { query = "@conditional.outer", desc = "Previous conditional" },
+							["[f"] = { query = "@function.outer", desc = "Previous function definition" },
+							["[l"] = { query = "@call.outer", desc = "Previous function call" },
+							["[m"] = { query = "@comment.outer", desc = "Previous comment" },
+							["[s"] = { query = "@class.outer", desc = "Previous class" },
+						},
+						goto_previous_end = {
+							["[+"] = { query = "@assignment.outer", desc = "Previous assignment end" },
+							["[A"] = { query = "@parameter.outer", desc = "Previous parameter end" },
+							["[B"] = { query = "@block.outer", desc = "Previous block end" },
+							["[C"] = { query = "@conditional.outer", desc = "Previous conditional end" },
+							["[F"] = { query = "@function.outer", desc = "Previous function end" },
+							["[L"] = { query = "@call.outer", desc = "Previous function call end" },
+							["[M"] = { query = "@comment.outer", desc = "Previous comment end" },
+							["[S"] = { query = "@class.outer", desc = "Previous class end" },
 						},
 					},
 				},
