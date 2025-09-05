@@ -27,7 +27,7 @@
             exit 1; \
         fi; \
         }; f"
-	fpush = push --force-with-lease
+	puush = push --force-with-lease
 
 [core]
     autolf = true

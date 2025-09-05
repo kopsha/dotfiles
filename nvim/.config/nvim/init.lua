@@ -36,24 +36,23 @@ require("lazy").setup({
 			end,
 		},
 		config = function()
-			vim.g.fzf_layout = { down = "40%" }
-			-- helper: send fzf selection(s) to quickfix
-			local function fzf_to_quickfix(lines)
-				if not lines or #lines == 0 then
-					return
-				end
+			local function send_to_quickfix(lines)
 				local items = {}
 				for _, line in ipairs(lines) do
 					table.insert(items, { filename = line })
 				end
-				vim.fn.setqflist({}, " ", { title = "fzf results", items = items })
+				vim.fn.setqflist(items)
 				vim.cmd("copen")
+				vim.cmd("cc")
 			end
-
-			-- make ctrl-q a universal action in any fzf.vim command
 			vim.g.fzf_action = {
-				["ctrl-q"] = fzf_to_quickfix,
+				["ctrl-q"] = send_to_quickfix,
+				["ctrl-t"] = "tab split",
+				["ctrl-x"] = "split",
+				["ctrl-v"] = "vsplit",
 			}
+
+			vim.g.fzf_layout = { down = "50%" }
 
 			-- general searches
 			vim.keymap.set("n", "<leader>sh", ":Helptags<CR>", { desc = "[S]earch [H]elp" })
