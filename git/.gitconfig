@@ -28,6 +28,7 @@
         fi; \
         }; f"
 	puush = push --force-with-lease
+	wc = whatchanged --i-still-use-this
 
 [core]
     autolf = true
