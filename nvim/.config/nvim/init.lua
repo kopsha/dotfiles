@@ -53,14 +53,15 @@ require("lazy").setup({
 			}
 
 			vim.g.fzf_layout = { down = "50%" }
+			vim.g.fzf_vim = { rg_options = "--nth 4.." }
 
 			-- general searches
 			vim.keymap.set("n", "<leader>sh", ":Helptags<CR>", { desc = "[S]earch [H]elp" })
 			vim.keymap.set("n", "<leader>sk", ":Maps<CR>", { desc = "[S]earch [K]eymaps" })
 			vim.keymap.set("n", "<leader>sf", ":Files<CR>", { desc = "[S]earch [F]iles" })
 			vim.keymap.set("n", "<leader>ss", ":Commands<CR>", { desc = "[S]earch [S]elect Command" })
-			vim.keymap.set("n", "<leader>sw", ":Rg <C-R><C-W><CR>", { desc = "[S]earch current [W]ord" })
-			vim.keymap.set("n", "<leader>sg", ":Rg<CR>", { desc = "[S]earch by [G]rep" })
+			vim.keymap.set("n", "<leader>sw", ":Rg<Space><C-R><C-W><CR>", { desc = "[S]earch current [W]ord" })
+			vim.keymap.set("n", "<leader>sg", ":Rg <CR>", { desc = "[S]earch by [G]rep" })
 			vim.keymap.set("n", "<leader>sd", ":BLines<CR>", { desc = "[S]earch [D]iagnostics (lines in buffer)" })
 			vim.keymap.set("n", "<leader>sr", ":History<CR>", { desc = "[S]earch [R]esume (History)" })
 			vim.keymap.set("n", "<leader>s.", ":History<CR>", { desc = '[S]earch Recent Files ("." for repeat)' })
