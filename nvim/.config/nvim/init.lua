@@ -563,4 +563,9 @@ require("lazy").setup({
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
 	},
+
+	{
+		"ojroques/nvim-hardline",
+		opts = { theme = "oxocarbon" },
+	},
 })
