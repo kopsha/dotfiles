@@ -1,5 +1,6 @@
 -- huh
-vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "Q", "<nop>", { noremap = true })
+vim.keymap.set("n", "s", "<Nop>", { noremap = true })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Had enough of yank to system registry
