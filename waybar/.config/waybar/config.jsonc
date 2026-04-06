@@ -9,21 +9,20 @@
     "modules-left": [
         "sway/workspaces",
         "sway/mode",
-        "sway/scratchpad"
+        "sway/scratchpad",
     ],
     "modules-center": [
         "sway/window"
     ],
     "modules-right": [
-        "idle_inhibitor",
-        "pulseaudio",
-        "network",
-        "power-profiles-daemon",
+        "clock",
         "cpu",
         "memory",
         "temperature",
+        "pulseaudio",
+        "power-profiles-daemon",
+        "idle_inhibitor",
         "sway/language",
-        "clock",
         "tray"
     ],
     "keyboard-state": {
