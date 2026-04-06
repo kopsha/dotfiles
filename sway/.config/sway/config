@@ -17,7 +17,7 @@ set $menu wmenu-run
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * scale 1.5 bg /usr/share/backgrounds/gnome/pixel-pusher-d.jxl fill
+output * scale 2 bg /usr/share/backgrounds/gnome/pixel-pusher-d.jxl fill
 
 ### Idle configuration
 #
