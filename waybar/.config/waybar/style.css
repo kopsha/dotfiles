@@ -47,11 +47,6 @@ button:hover {
     box-shadow: inset 0 -3px #ffffff;
 }
 
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-    background-color: #a37800;
-}
-
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
@@ -113,7 +108,8 @@ button:hover {
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: #ffd6a5;
+    color: #000000;
 }
 
 #battery {
@@ -149,17 +145,17 @@ button:hover {
 }
 
 #power-profiles-daemon.performance {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: #ffadad;
+    color: #000000;
 }
 
 #power-profiles-daemon.balanced {
-    background-color: #2980b9;
-    color: #ffffff;
+    background-color: #bdb2ff;
+    color: #000000;
 }
 
 #power-profiles-daemon.power-saver {
-    background-color: #2ecc71;
+    background-color: #caffbf;
     color: #000000;
 }
 
@@ -168,12 +164,13 @@ label:focus {
 }
 
 #cpu {
-    background-color: #2ecc71;
+    background-color: #fdffb6;
     color: #000000;
 }
 
 #memory {
-    background-color: #90b1b1;
+    background-color: #caffbf;
+    color: #000000;
 }
 
 #disk {
@@ -189,11 +186,11 @@ label:focus {
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    background-color: #ffadad;
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
+    background-color: #a0c4ff;
     color: #000000;
 }
 
@@ -226,15 +223,16 @@ label:focus {
 }
 
 #temperature {
-    background-color: #f0932b;
+    background-color: #9bf6ff;
+    color: #000000;
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: #ffadad;
 }
 
 #tray {
-    background-color: #2980b9;
+    background-color: white;
 }
 
 #tray > .passive {
@@ -243,16 +241,17 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    background-color: #ffadad;
 }
 
 #idle_inhibitor {
-    background-color: #2d3436;
+    background-color: #ffc6ff;
+    color: #000000;
 }
 
 #idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+    background-color: #ffc6ff;
+    color: #000000;
 }
 
 #mpd {
@@ -273,10 +272,9 @@ label:focus {
 }
 
 #language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
+    background: #fbe0e0;
+    color: #000000;
+    padding: 0 8px;
     min-width: 16px;
 }
 

@@ -175,5 +175,5 @@ exec brave-browser
 exec rhythmbox
 exec spotify
 exec qbittorrent
+exec megasync
 exec foot
-
