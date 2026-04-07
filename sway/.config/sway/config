@@ -211,7 +211,6 @@ include /etc/sway/config.d/*
 #            WORKSPACE ASSIGNMENTS           #
 ##############################################
 
-assign [app_id="brave-browser"] 1
 assign [app_id="Rhythmbox3"] 2
 assign [app_id="spotify"] 2
 assign [app_id="qBittorrent"] 9
@@ -221,10 +220,10 @@ assign [app_id="qBittorrent"] 9
 #                 AUTOSTART                  #
 ##############################################
 
-exec brave-browser
+exec swaymsg "workspace number 1; exec brave-browser"
 exec rhythmbox
 exec spotify
 exec qbittorrent
 exec megasync
-exec foot
+exec swaymsg "workspace number 3; exec foot"
 

@@ -230,6 +230,8 @@ require("lazy").setup({
 						".git"
 					),
 				},
+				-- copilot.lua only works with its own copilot lsp server
+				copilot = { enabled = false },
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -437,7 +439,7 @@ require("lazy").setup({
 					-- Accept ([y]es) the completion.
 					--  This will auto-import if your LSP supports it.
 					--  This will expand snippets if the LSP sent a snippet.
-					["<Tab>"] = cmp.mapping.confirm({ select = true }),
+					["<C-y>"] = cmp.mapping.confirm({ select = true }),
 
 					-- Manually trigger a completion from nvim-cmp.
 					["<C-Space>"] = cmp.mapping.complete({}),
@@ -567,5 +569,37 @@ require("lazy").setup({
 	{
 		"ojroques/nvim-hardline",
 		opts = { theme = "oxocarbon" },
+	},
+
+	{
+		"github/copilot.vim",
+		event = "InsertEnter",
+		init = function()
+			vim.g.copilot_no_tab_map = true
+		end,
+		config = function()
+			vim.keymap.set("i", "<C-y>", 'copilot#Accept("<CR>")', {
+				silent = true,
+				expr = true,
+				replace_keycodes = false,
+			})
+		end,
+		opts = {
+			suggestion = {
+				enabled = not vim.g.ai_cmp,
+				auto_trigger = true,
+				hide_during_completion = vim.g.ai_cmp,
+				keymap = {
+					accept = false, -- handled by nvim-cmp / blink.cmp
+					next = "<C-n>",
+					prev = "<C-p>",
+				},
+			},
+			panel = { enabled = false },
+			filetypes = {
+				markdown = true,
+				help = true,
+			},
+		},
 	},
 })
