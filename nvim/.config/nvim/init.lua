@@ -230,8 +230,6 @@ require("lazy").setup({
 						".git"
 					),
 				},
-				-- copilot.lua only works with its own copilot lsp server
-				copilot = { enabled = false },
 			}
 
 			-- Ensure the servers and tools above are installed
@@ -572,34 +570,29 @@ require("lazy").setup({
 	},
 
 	{
-		"github/copilot.vim",
+		"zbirenbaum/copilot.lua",
 		event = "InsertEnter",
-		init = function()
-			vim.g.copilot_no_tab_map = true
-		end,
-		config = function()
-			vim.keymap.set("i", "<C-y>", 'copilot#Accept("<CR>")', {
-				silent = true,
-				expr = true,
-				replace_keycodes = false,
-			})
-		end,
 		opts = {
 			suggestion = {
-				enabled = not vim.g.ai_cmp,
-				auto_trigger = true,
-				hide_during_completion = vim.g.ai_cmp,
+				enabled = true,
+				auto_trigger = true, -- ghost text appears automatically
+				debounce = 75, -- delay before suggestions appear
 				keymap = {
-					accept = false, -- handled by nvim-cmp / blink.cmp
+					accept = "<C-y>",
 					next = "<C-n>",
 					prev = "<C-p>",
+					dismiss = "<C-e>",
 				},
 			},
 			panel = { enabled = false },
 			filetypes = {
 				markdown = true,
 				help = true,
+				["*"] = true,
 			},
 		},
+		config = function(_, opts)
+			require("copilot").setup(opts)
+		end,
 	},
 })
