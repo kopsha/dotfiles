@@ -5,7 +5,15 @@
 set $alt Mod1
 set $mod Mod4
 set $term foot
-set $menu wmenu-run
+
+# Recommends: rofi-wayland
+set $rofi_cmd rofi \
+        -terminal '$term'
+# Shows a combined list of the applications with desktop files and
+# executables from PATH.
+# TODO: add window with the next release of rofi-wayland
+set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
+
 
 # Vim-style navigation
 set $left h
@@ -19,16 +27,6 @@ set $right l
 ##############################################
 
 output * scale 2 bg /usr/share/backgrounds/gnome/pixel-pusher-d.jxl fill
-
-
-##############################################
-#              IDLE / POWER MGMT             #
-##############################################
-
-exec swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
-    timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-    before-sleep 'swaylock -f -c 000000'
 
 
 ##############################################
@@ -63,17 +61,28 @@ bindsym $mod+Shift+e exec swaynag -t warning \
 # Floating window mouse behavior
 floating_modifier $mod normal
 
-# Focus movement
-bindsym $mod+$left  focus left
-bindsym $mod+$down  focus down
-bindsym $mod+$up    focus up
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
 bindsym $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
-# Move windows
-bindsym $mod+Shift+$left  move left
-bindsym $mod+Shift+$down  move down
-bindsym $mod+Shift+$up    move up
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
 
 
 ##############################################
@@ -82,7 +91,6 @@ bindsym $mod+Shift+$right move right
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable
-# for_window [title="All files"] floating enable
 
 
 ##############################################
@@ -167,44 +175,9 @@ bindsym $mod+r mode "resize"
 #                  UTILITIES                 #
 ##############################################
 
-# Media buttons
-# bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-# bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-# bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-# bindsym --locked XF86AudioPlay exec playerctl play-pause
-# bindsym --locked XF86AudioPause exec playerctl play-pause
-# bindsym --locked XF86AudioNext exec playerctl next
-# bindsym --locked XF86AudioPrev exec playerctl previous
-# bindsym --locked XF86AudioStop exec playerctl stop
-bindsym --locked {
-    XF86AudioMute         exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-    XF86AudioLowerVolume  exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    XF86AudioRaiseVolume  exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    XF86AudioPlay         exec playerctl play-pause
-    XF86AudioPause        exec playerctl play-pause
-    XF86AudioNext         exec playerctl next
-    XF86AudioPrev         exec playerctl previous
-    XF86AudioStop         exec playerctl stop
-}
+include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
 
 bindsym XF86Calculator exec gnome-calculator
-bindsym {
-    # Capture the currently active output
-    Print       exec grim - | wl-copy
-    # Select and capture a custom rectangular area
-    Ctrl+Print  exec grim -g "$(slurp)" - | wl-copy
-}
-
-
-##############################################
-#                 STATUS BAR                 #
-##############################################
-
-bar {
-    swaybar_command waybar
-}
-
-include /etc/sway/config.d/*
 
 
 ##############################################
