@@ -6,6 +6,12 @@ set $alt Mod1
 set $mod Mod4
 set $term foot
 
+# Vim-style navigation
+set $left h
+set $down j
+set $up   k
+set $right l
+
 # Recommends: rofi-wayland
 set $rofi_cmd rofi \
         -terminal '$term'
@@ -13,13 +19,6 @@ set $rofi_cmd rofi \
 # executables from PATH.
 # TODO: add window with the next release of rofi-wayland
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
-
-
-# Vim-style navigation
-set $left h
-set $down j
-set $up   k
-set $right l
 
 
 ##############################################
@@ -30,33 +29,20 @@ output * scale 2 bg /usr/share/backgrounds/gnome/pixel-pusher-d.jxl fill
 
 
 ##############################################
-#              INPUT CONFIGURATION           #
-##############################################
-
-input type:keyboard {
-    repeat_delay 220
-    repeat_rate 39
-}
-
-input type:pointer {
-    natural_scroll enabled
-}
-
-
-##############################################
 #                KEY BINDINGS                #
 ##############################################
+
+# Exit Sway
+bindsym $mod+Shift+e exec swaynag \
+  -t warning \
+  -m 'Exit sway?' \
+  -B 'Yes, exit' 'swaymsg exit'
 
 # Core actions
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 bindsym $mod+Shift+c reload
-
-# Exit Sway
-bindsym $mod+Shift+e exec swaynag -t warning \
-    -m 'Do you really want to exit sway?' \
-    -B 'Yes, exit sway' 'swaymsg exit'
 
 # Floating window mouse behavior
 floating_modifier $mod normal
@@ -181,22 +167,16 @@ bindsym XF86Calculator exec gnome-calculator
 
 
 ##############################################
-#            WORKSPACE ASSIGNMENTS           #
-##############################################
-
-assign [app_id="Rhythmbox3"] 2
-assign [app_id="spotify"] 2
-assign [app_id="qBittorrent"] 9
-
-
-##############################################
 #                 AUTOSTART                  #
 ##############################################
 
-exec swaymsg "workspace number 1; exec brave-browser"
-exec rhythmbox
-exec spotify
-exec qbittorrent
-exec megasync
-exec swaymsg "workspace number 3; exec foot"
+workspace number 2
+exec foot
+workspace number 1
+exec brave-browser
 
+# assign [app_id="spotify"] 3
+# exec spotify
+# assign [app_id="qBittorrent"] 3
+# exec qbittorrent
+# exec megasync
