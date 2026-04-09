@@ -173,8 +173,20 @@ gaps inner 8
 ##############################################
 
 assign [app_id="spotify"] 3
+assign [app_id="elisa"] 3
 assign [app_id="qBittorrent"] 3
 assign [class="MEGAsync"] 3
-exec spotify
-exec qbittorrent
-exec megasync
+
+workspace 3
+exec --no-startup-id spotify
+exec --no-startup-id elisa
+exec --no-startup-id qbittorrent
+exec --no-startup-id smegasync
+
+workspace 2
+for_window [app_id=$term] fullscreen enable
+exec --no-startup-id $term
+
+workspace 1
+exec --no-startup-id xdg-open http://
+
