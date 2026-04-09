@@ -164,17 +164,17 @@ bindsym $mod+r mode "resize"
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
 
 bindsym XF86Calculator exec qalculate-gtk
+gaps outer 8
+gaps inner 8
 
 
 ##############################################
 #                 AUTOSTART                  #
 ##############################################
 
-gaps outer 13
-gaps inner 13
-
-# assign [app_id="spotify"] 3
-# exec spotify
-# assign [app_id="qBittorrent"] 3
-# exec qbittorrent
-# exec megasync
+assign [app_id="spotify"] 3
+assign [app_id="qBittorrent"] 3
+assign [class="MEGAsync"] 3
+exec spotify
+exec qbittorrent
+exec megasync
