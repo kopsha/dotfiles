@@ -164,7 +164,7 @@ bindsym $mod+r mode "resize"
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
 
 bindsym XF86Calculator exec qalculate-gtk
-gaps outer 8
+gaps outer 3
 gaps inner 8
 
 
