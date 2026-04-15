@@ -262,8 +262,10 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- Highlight, edit, and navigate code
+	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
+		lazy = false,
 		build = ":TSUpdate",
 		opts = {
 			ensure_installed = {
@@ -301,89 +303,88 @@ require("lazy").setup({
 				},
 			},
 			indent = { enable = true, disable = { "ruby" } },
-		},
-		config = function(_, opts)
-			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-			require("nvim-treesitter.config").setup(opts)
-		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			opts = {
-				textobjects = {
-					select = {
-						enable = true,
-						lookahead = true,
-						keymaps = {
-							["a="] = { query = "@assignment.outer", desc = "Outer assignment" },
-							["i="] = { query = "@assignment.inner", desc = "Inner assignment" },
-							["aa"] = { query = "@parameter.outer", desc = "Outer parameter" },
-							["ia"] = { query = "@parameter.inner", desc = "Inner parameter" },
-							["ab"] = { query = "@block.outer", desc = "Outer block" },
-							["ib"] = { query = "@block.inner", desc = "Inner block" },
-							["ac"] = { query = "@conditional.outer", desc = "Outer conditional" },
-							["ic"] = { query = "@conditional.inner", desc = "Inner conditional" },
-							["af"] = { query = "@function.outer", desc = "Outer function definition" },
-							["if"] = { query = "@function.inner", desc = "Inner function definition" },
-							["al"] = { query = "@call.outer", desc = "Outer function call" },
-							["il"] = { query = "@call.inner", desc = "Inner function call" },
-							["am"] = { query = "@comment.outer", desc = "Outer comment" },
-							["im"] = { query = "@comment.inner", desc = "Inner comment" },
-							["as"] = { query = "@class.outer", desc = "Outer class" },
-							["is"] = { query = "@class.inner", desc = "Inner class" },
-						},
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
+					keymaps = {
+						["a="] = { query = "@assignment.outer", desc = "Outer assignment" },
+						["i="] = { query = "@assignment.inner", desc = "Inner assignment" },
+						["aa"] = { query = "@parameter.outer", desc = "Outer parameter" },
+						["ia"] = { query = "@parameter.inner", desc = "Inner parameter" },
+						["ab"] = { query = "@block.outer", desc = "Outer block" },
+						["ib"] = { query = "@block.inner", desc = "Inner block" },
+						["ac"] = { query = "@conditional.outer", desc = "Outer conditional" },
+						["ic"] = { query = "@conditional.inner", desc = "Inner conditional" },
+						["af"] = { query = "@function.outer", desc = "Outer function definition" },
+						["if"] = { query = "@function.inner", desc = "Inner function definition" },
+						["al"] = { query = "@call.outer", desc = "Outer function call" },
+						["il"] = { query = "@call.inner", desc = "Inner function call" },
+						["am"] = { query = "@comment.outer", desc = "Outer comment" },
+						["im"] = { query = "@comment.inner", desc = "Inner comment" },
+						["as"] = { query = "@class.outer", desc = "Outer class" },
+						["is"] = { query = "@class.inner", desc = "Inner class" },
 					},
-					move = {
-						enable = true,
-						set_jumps = true,
-						goto_next_start = {
-							["]="] = { query = "@assignment.outer", desc = "Next assignment" },
-							["]a"] = { query = "@parameter.outer", desc = "Next parameter" },
-							["]b"] = { query = "@block.outer", desc = "Next block" },
-							["]c"] = { query = "@conditional.outer", desc = "Next conditional" },
-							["]f"] = { query = "@function.outer", desc = "Next function definition" },
-							["]l"] = { query = "@call.outer", desc = "Next function call" },
-							["]m"] = { query = "@comment.outer", desc = "Next comment" },
-							["]s"] = { query = "@class.outer", desc = "Next class" },
-						},
-						goto_next_end = {
-							["]+"] = { query = "@assignment.outer", desc = "Next assignment end" },
-							["]A"] = { query = "@parameter.outer", desc = "Next parameter end" },
-							["]B"] = { query = "@block.outer", desc = "Next block end" },
-							["]C"] = { query = "@conditional.outer", desc = "Next conditional end" },
-							["]F"] = { query = "@function.outer", desc = "Next function end" },
-							["]L"] = { query = "@call.outer", desc = "Next function call end" },
-							["]M"] = { query = "@comment.outer", desc = "Next comment end" },
-							["]S"] = { query = "@class.outer", desc = "Next class end" },
-						},
-						goto_previous_start = {
-							["[="] = { query = "@assignment.outer", desc = "Previous assignment" },
-							["[a"] = { query = "@parameter.outer", desc = "Previous parameter" },
-							["[b"] = { query = "@block.outer", desc = "Previous block" },
-							["[c"] = { query = "@conditional.outer", desc = "Previous conditional" },
-							["[f"] = { query = "@function.outer", desc = "Previous function definition" },
-							["[l"] = { query = "@call.outer", desc = "Previous function call" },
-							["[m"] = { query = "@comment.outer", desc = "Previous comment" },
-							["[s"] = { query = "@class.outer", desc = "Previous class" },
-						},
-						goto_previous_end = {
-							["[+"] = { query = "@assignment.outer", desc = "Previous assignment end" },
-							["[A"] = { query = "@parameter.outer", desc = "Previous parameter end" },
-							["[B"] = { query = "@block.outer", desc = "Previous block end" },
-							["[C"] = { query = "@conditional.outer", desc = "Previous conditional end" },
-							["[F"] = { query = "@function.outer", desc = "Previous function end" },
-							["[L"] = { query = "@call.outer", desc = "Previous function call end" },
-							["[M"] = { query = "@comment.outer", desc = "Previous comment end" },
-							["[S"] = { query = "@class.outer", desc = "Previous class end" },
-						},
+				},
+				move = {
+					enable = true,
+					set_jumps = true,
+					goto_next_start = {
+						["]="] = { query = "@assignment.outer", desc = "Next assignment" },
+						["]a"] = { query = "@parameter.outer", desc = "Next parameter" },
+						["]b"] = { query = "@block.outer", desc = "Next block" },
+						["]c"] = { query = "@conditional.outer", desc = "Next conditional" },
+						["]f"] = { query = "@function.outer", desc = "Next function definition" },
+						["]l"] = { query = "@call.outer", desc = "Next function call" },
+						["]m"] = { query = "@comment.outer", desc = "Next comment" },
+						["]s"] = { query = "@class.outer", desc = "Next class" },
+					},
+					goto_next_end = {
+						["]+"] = { query = "@assignment.outer", desc = "Next assignment end" },
+						["]A"] = { query = "@parameter.outer", desc = "Next parameter end" },
+						["]B"] = { query = "@block.outer", desc = "Next block end" },
+						["]C"] = { query = "@conditional.outer", desc = "Next conditional end" },
+						["]F"] = { query = "@function.outer", desc = "Next function end" },
+						["]L"] = { query = "@call.outer", desc = "Next function call end" },
+						["]M"] = { query = "@comment.outer", desc = "Next comment end" },
+						["]S"] = { query = "@class.outer", desc = "Next class end" },
+					},
+					goto_previous_start = {
+						["[="] = { query = "@assignment.outer", desc = "Previous assignment" },
+						["[a"] = { query = "@parameter.outer", desc = "Previous parameter" },
+						["[b"] = { query = "@block.outer", desc = "Previous block" },
+						["[c"] = { query = "@conditional.outer", desc = "Previous conditional" },
+						["[f"] = { query = "@function.outer", desc = "Previous function definition" },
+						["[l"] = { query = "@call.outer", desc = "Previous function call" },
+						["[m"] = { query = "@comment.outer", desc = "Previous comment" },
+						["[s"] = { query = "@class.outer", desc = "Previous class" },
+					},
+					goto_previous_end = {
+						["[+"] = { query = "@assignment.outer", desc = "Previous assignment end" },
+						["[A"] = { query = "@parameter.outer", desc = "Previous parameter end" },
+						["[B"] = { query = "@block.outer", desc = "Previous block end" },
+						["[C"] = { query = "@conditional.outer", desc = "Previous conditional end" },
+						["[F"] = { query = "@function.outer", desc = "Previous function end" },
+						["[L"] = { query = "@call.outer", desc = "Previous function call end" },
+						["[M"] = { query = "@comment.outer", desc = "Previous comment end" },
+						["[S"] = { query = "@class.outer", desc = "Previous class end" },
 					},
 				},
 			},
 		},
 	},
-	"nvim-treesitter/nvim-treesitter-context",
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
 
 	{ -- Autocompletion
 		"hrsh7th/nvim-cmp",
