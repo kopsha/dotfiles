@@ -643,31 +643,4 @@ require("lazy").setup({
 		"ojroques/nvim-hardline",
 		opts = { theme = "oxocarbon" },
 	},
-
-	{
-		"zbirenbaum/copilot.lua",
-		event = "InsertEnter",
-		opts = {
-			suggestion = {
-				enabled = true,
-				auto_trigger = true, -- ghost text appears automatically
-				debounce = 75, -- delay before suggestions appear
-				keymap = {
-					accept = "<C-y>",
-					next = "<M-n>",
-					prev = "<M-p>",
-					dismiss = "<C-e>",
-				},
-			},
-			panel = { enabled = false },
-			filetypes = {
-				markdown = true,
-				help = true,
-				["*"] = true,
-			},
-		},
-		config = function(_, opts)
-			require("copilot").setup(opts)
-		end,
-	},
 })
