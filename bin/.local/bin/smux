@@ -40,22 +40,10 @@ open_session()
     fi
 }
 
-open_window()
-{
-    folder=$(cat <(find "${WORK_AREAS[@]}" -mindepth 1 -maxdepth 1 -type d) \
-             <(realpath ~/dotfiles) | fzf)
-    [[ -z $folder ]] && exit 0
-
-    name=$(basename "$folder" | tr . _)
-
-    echo "Creating $name window..."
-    tmux new-window -aS -n $name -c $folder
-    post_create_hook $name "$folder"
-
-}
 
 post_create_hook()
 {
+    # NOTE: here we should invoke a configuration
     target=$1
     folder=$2
     if [[ -d "$folder/.venv" ]]; then
@@ -74,10 +62,6 @@ case $arg in
         open_session
         ;;
     "")
-        if [[ -z ${TMUX:-} ]]; then
-            open_session
-        else
-            open_window
-        fi
+        open_session
         ;;
 esac
