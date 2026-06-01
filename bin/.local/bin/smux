@@ -11,66 +11,103 @@ WORKAREAS=(
 usage()
 {
     echo ""
-    echo "Usage: $0 [-h | --help]"
-    echo "Description: Creates a new tmux session starting from the selected project folder."
+    echo "Usage: $0 [-a|--append] [-h|--help]"
+    echo ""
+    echo "  --append    Create a new window in the current tmux session"
+    echo "              instead of creating/switching sessions."
     echo ""
     echo "Using lookup folders: ${(j:, :)WORKAREAS}"
 }
 
+select_folder()
+{
+    {
+        for dir in "${WORKAREAS[@]}"; do
+            [[ -d "$dir" ]] && \
+                find "$dir" -mindepth 1 -maxdepth 1 -type d
+        done
+
+        [[ -d ~/dotfiles ]] && realpath ~/dotfiles
+    } | fzf
+}
 
 open_session()
 {
-    local folder=$(
-        {
-            for dir in "${WORKAREAS[@]}"; do
-                [[ -d "$dir" ]] && \
-                    find "$dir" -mindepth 1 -maxdepth 1 -type d
-            done
-
-            [[ -d ~/dotfiles ]] && realpath ~/dotfiles
-        } | fzf
-    )
+    local folder
+    folder=$(select_folder)
     [[ -z $folder ]] && exit 0
 
-    local session_name=$(basename "$folder" | tr . _)
+    local session_name
+    session_name=$(basename "$folder" | tr . _)
 
-    if ! tmux has-session -t $session_name 2>/dev/null; then
+    if ! tmux has-session -t "$session_name" 2>/dev/null; then
         echo "Creating $session_name session..."
-        tmux new-session -ds $session_name -c $folder
-        post_create_hook $session_name "$folder"
+        tmux new-session -ds "$session_name" -c "$folder"
+        post_create_hook "$session_name:0" "$folder"
     fi
 
     if [[ -z "${TMUX:-}" ]]; then
-        tmux attach -t $session_name
+        tmux attach -t "$session_name"
     else
-        tmux switch-client -t $session_name
+        tmux switch-client -t "$session_name"
     fi
 }
 
+append_window()
+{
+    local folder
+    folder=$(select_folder)
+    [[ -z $folder ]] && exit 0
+
+    local session
+    session=$(tmux display-message -p "#{session_name}")
+
+    local window_name
+    window_name=$(basename "$folder" | tr . _)
+
+    local existing
+    existing=$(tmux list-windows -t "$session" -F "#{window_name}:#{window_index}" | grep -m1 "^${window_name}:" || true)
+
+    local target
+    if [[ -n "$existing" ]]; then
+        target="${session}:${existing#*:}"
+    else
+        target=$(tmux new-window -P -F "#{session_name}:#{window_index}" \
+            -n "$window_name" \
+            -c "$folder")
+        post_create_hook "$target" "$folder"
+    fi
+    tmux select-window -t "$target"
+}
 
 post_create_hook()
 {
-    # NOTE: here we should invoke an auto-configuration script
-    local target_session=$1
+    local target=$1
     local folder=$2
+
     if [[ -d "$folder/.venv" ]]; then
-        tmux send-keys -t $target_session "source .venv/bin/activate" C-m
+        tmux send-keys -t "$target" "source .venv/bin/activate" C-m
     fi
 }
 
 ## main
-arg=${1:-}
-case $arg in
+case "${1:-}" in
     -h|--help)
         usage
-        exit
+        ;;
+    -a|--append)
+        [[ -z "${TMUX:-}" ]] && {
+            echo "--append can only be used from inside a tmux session." >&2
+            exit 1
+        }
+        append_window
         ;;
     "")
         open_session
         ;;
     *)
-        echo "Unknown argument: $arg" >&2
+        echo "Unknown argument: $1" >&2
         usage
-        exit -1
+        exit 1
         ;;
 esac

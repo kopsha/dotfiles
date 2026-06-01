@@ -4,3 +4,5 @@ tmux/.config/tmux/plugins/
 nvim/.config/nvim/plugin/
 nvim/.config/nvim/*-lock.json
 
+bin/.local/bin/ruff
+
