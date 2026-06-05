@@ -42,8 +42,10 @@ open_session()
 
     if ! tmux has-session -t "$session_name" 2>/dev/null; then
         echo "Creating $session_name session..."
-        tmux new-session -ds "$session_name" -c "$folder"
-        post_create_hook "$session_name:0" "$folder"
+        local target_pane=$(
+            tmux new-session -ds "$session_name" -c "$folder" -PF '#{session_name}:#{window_index}'
+        )
+        post_create_hook "$target_pane" "$folder"
     fi
 
     if [[ -z "${TMUX:-}" ]]; then
@@ -86,7 +88,7 @@ post_create_hook()
     local folder=$2
 
     if [[ -d "$folder/.venv" ]]; then
-        tmux send-keys -t "$target" "source .venv/bin/activate" C-m
+        tmux send-keys -t "$target" "source .venv/bin/activate" Enter
     fi
 }
 
