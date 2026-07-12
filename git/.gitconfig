@@ -3,6 +3,10 @@
     email = florin.ciurcanu@gmail.com
 	signingkey = 794463A475697724
 
+# NOTE: include special work settings
+[includeIf "gitdir:~/work/"]
+    path = ~/work/.gitconfig
+
 [pager]
     branch = false
 
