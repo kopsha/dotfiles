@@ -37,6 +37,8 @@ esac
 # User configuration
 export LANG=en_US.UTF-8
 alias vim="nvim"
+alias pd="cd ~/proj/"
+alias wd="cd ~/work/"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -48,4 +50,11 @@ fi
 ####
 # MacOS iterm2 stuff
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export NVM_LAZY_LOAD=true
+export NVM_DIR="$HOME/.nvm"
+
+# NOTE: FUCK NVM!
+# [ -s "$(brew --prefix nvm)/nvm.sh" ] && \. "$(brew --prefix nvm)/nvm.sh"
+# [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
 
